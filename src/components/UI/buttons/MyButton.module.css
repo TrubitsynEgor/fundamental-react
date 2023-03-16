@@ -1,0 +1,11 @@
+.myBtn {
+	padding: 5px 15px;
+	color: teal;
+	background-color: transparent;
+	border: 1px solid aqua;
+	cursor: pointer;
+}
+.myBtn:disabled{
+	color: rgba(0,0,0, 0.3);
+	border: 1px solid rgba(0,0,0, 0.3);
+}
