@@ -1,8 +1,8 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import MyButton from './UI/buttons/MyButton'
 import MyInput from './UI/inputs/MyInput'
 
-const CreateForm = ({ setPosts, posts }) => {
+const CreateForm = ({ createPost }) => {
 
 	const [post, setPost] = useState({
 		title: '',
@@ -18,12 +18,12 @@ const CreateForm = ({ setPosts, posts }) => {
 
 	const addNewPost = (e) => {
 		e.preventDefault()
-		setPosts([...posts, { ...post, id: Date.now() }])
+		const newPost = { ...post, id: Date.now() }
+		createPost(newPost)
 		setPost({
 			title: '',
 			body: '',
 		});
-
 	}
 
 

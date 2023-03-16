@@ -1,0 +1,14 @@
+.mySelect {
+	padding: 5px 15px;
+	margin:  5px 0;
+	border: 1px solid aqua;
+	color: teal;
+	cursor: pointer;
+}
+
+
+.mySelect:focus{
+	outline: none;
+	border: 1px solid teal;
+}
+
