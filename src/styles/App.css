@@ -39,3 +39,19 @@ hr {
 	margin-bottom: 20px;
 	border-bottom: 1px dashed aqua;
 }
+
+
+.post-enter {
+  transform: translateX(-365px);
+}
+.post-enter-active {
+  transform: translateX(0px);
+  transition: all 500ms ease-in;
+}
+.post-exit {
+  opacity: 1;
+}
+.post-exit-active {
+  transform: translateX(-365px);
+  transition: all 500ms ease-in;
+}
