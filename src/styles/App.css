@@ -80,3 +80,28 @@ hr {
 	background-color: tomato;
 	font-weight: 600;
 }
+
+
+.post__btns {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	
+}
+
+.post__content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-top: 40px;
+	
+}
+.post__content h2 {
+	padding-bottom: 20px;
+	
+}
+.post__content p {
+	padding: 10px;
+	text-align: center;
+}

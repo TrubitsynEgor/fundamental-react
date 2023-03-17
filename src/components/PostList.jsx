@@ -1,6 +1,6 @@
 
 import { TransitionGroup, CSSTransition } from "react-transition-group"
-import Post from "./PostItem"
+import PostItem from "./PostItem"
 import NotFound from "./UI/not-found/NotFound"
 
 const PostList = ({ posts, title, removePost }) => {
@@ -18,7 +18,7 @@ const PostList = ({ posts, title, removePost }) => {
 						key={post.id}
 						timeout={500}
 						classNames='post'>
-						<Post removePost={removePost} number={idx + 1} post={post} />
+						<PostItem removePost={removePost} number={idx + 1} post={post} />
 					</CSSTransition>
 				)}
 			</TransitionGroup>
