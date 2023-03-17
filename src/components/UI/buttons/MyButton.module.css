@@ -1,9 +1,10 @@
 .myBtn {
 	padding: 5px 15px;
 	color: teal;
-	background-color: transparent;
-	border: 1px solid aqua;
+	background-color: aqua;
 	cursor: pointer;
+	border: none;
+	border-radius: 3px;
 }
 .myBtn:disabled{
 	color: rgba(0,0,0, 0.3);
