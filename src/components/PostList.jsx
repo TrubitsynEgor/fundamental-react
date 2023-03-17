@@ -1,9 +1,9 @@
 
 import { TransitionGroup, CSSTransition } from "react-transition-group"
-import Post from "./Post"
+import Post from "./PostItem"
 import NotFound from "./UI/not-found/NotFound"
 
-const Posts = ({ posts, title, removePost }) => {
+const PostList = ({ posts, title, removePost }) => {
 
 	if (!posts.length) {
 		return <NotFound />
@@ -26,4 +26,4 @@ const Posts = ({ posts, title, removePost }) => {
 	)
 }
 
-export default Posts
+export default PostList

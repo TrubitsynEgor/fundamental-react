@@ -2,9 +2,11 @@ import React from 'react'
 import classes from './NotFound.module.css'
 
 
-const NotFound = () => {
+const NotFound = ({ page }) => {
 	return (
-		<h2 className={classes.title}>Post not found</h2>
+		page
+			? <h1 className={classes.title}>{page} not found</h1>
+			: <h1 className={classes.title}>Post not found</h1>
 	)
 }
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import MyButton from './UI/buttons/MyButton'
 
-const Post = ({ post: { id, title, body }, number, removePost, post }) => {
+const PostItem = ({ post: { id, title, body }, number, removePost, post }) => {
 
 	return (
 		<div className='post'>
@@ -18,4 +18,4 @@ const Post = ({ post: { id, title, body }, number, removePost, post }) => {
 	)
 }
 
-export default Post
+export default PostItem
