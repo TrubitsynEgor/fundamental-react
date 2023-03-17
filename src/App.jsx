@@ -1,12 +1,16 @@
-import { useState, useMemo } from "react";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { PostService } from "./API/PostService";
 import CreateForm from "./components/CreateForm";
 import PostFilter from "./components/PostFilter";
 import Posts from "./components/Posts";
 import MyButton from "./components/UI/buttons/MyButton";
 import MyInput from "./components/UI/inputs/MyInput";
+import PostLoader from "./components/UI/loader/PostLoader";
 import MyModal from "./components/UI/modals/MyModal";
 import NotFound from "./components/UI/not-found/NotFound";
 import SortSelect from "./components/UI/selects/SortSelect";
+import { usePosts } from "./hooks/usePosts";
 import './styles/App.css'
 
 
@@ -22,6 +26,14 @@ const App = () => {
     query: '',
   })
   const [modal, setModal] = useState(false)
+  const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query)
+  const [isPostLoading, setIsPostLoading] = useState(false)
+
+  useEffect(() => {
+    fetchPosts()
+  }, [])
+
+
 
   const createPost = (newPost) => {
     setPosts([...posts, newPost])
@@ -31,18 +43,12 @@ const App = () => {
     setPosts(posts.filter(p => p.id !== post.id))
   }
 
-  const sortedPost = useMemo(() => {
-    if (filter.sort) {
-      return [...posts].sort((a, b) =>
-        a[filter.sort].localeCompare(b[filter.sort]));
-    }
-    return posts
-  }, [filter.sort, posts])
-
-  const sortedAndSearchedPosts = useMemo(() => {
-    return sortedPost.filter(post => post.title.toLowerCase().includes(filter.query))
-  }, [filter.query, sortedPost])
-
+  const fetchPosts = async () => {
+    setIsPostLoading(true)
+    const posts = await PostService.getAll()
+    setPosts(posts)
+    setIsPostLoading(false)
+  }
 
   return (
 
@@ -53,16 +59,15 @@ const App = () => {
       </MyModal>
 
       <PostFilter filter={filter} setFilter={setFilter} />
-      <Posts removePost={removePost} posts={sortedAndSearchedPosts} title='Posts List JavaScript:' />
+      {isPostLoading
+        ? <PostLoader />
+        : <Posts removePost={removePost} posts={sortedAndSearchedPosts} title='Posts List JavaScript:' />
+      }
 
 
     </div>
 
   );
 }
-
-
-
-
 
 export default App;
