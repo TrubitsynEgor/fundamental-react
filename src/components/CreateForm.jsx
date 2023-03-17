@@ -28,7 +28,7 @@ const CreateForm = ({ createPost }) => {
 
 
 	return (
-		<form action="" >
+		<form className='create-form' >
 			<MyInput value={post.title} onChange={handleTitleChange} type='text' placeholder='Post name' />
 			<MyInput value={post.body} onChange={handleBodyChange} type='text' placeholder='Post Body' />
 			<MyButton onClick={addNewPost}>Create post</MyButton>

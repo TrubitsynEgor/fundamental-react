@@ -1,9 +1,12 @@
 
 import Post from "./Post"
+import NotFound from "./UI/not-found/NotFound"
 
 const Posts = ({ posts, title, removePost }) => {
 
-
+	if (!posts.length) {
+		return <NotFound />
+	}
 
 	return (
 		<div>

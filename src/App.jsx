@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import CreateForm from "./components/CreateForm";
+import PostFilter from "./components/PostFilter";
 import Posts from "./components/Posts";
 import MyInput from "./components/UI/inputs/MyInput";
 import NotFound from "./components/UI/not-found/NotFound";
@@ -14,18 +15,10 @@ const App = () => {
     { id: 2, title: 'CSS', body: 'Descriptions2...' },
     { id: 3, title: 'HTML', body: 'Descriptions3...' }
   ])
-  const [selectedSort, setSelectedSort] = useState('')
-  const [searchQuery, setSearchQuery] = useState('')
-
-  function getSortedPosts() {
-    console.log('calls function sorted ');
-    if (selectedSort) {
-      return [...posts].sort((a, b) =>
-        a[selectedSort].localeCompare(b[selectedSort]));
-    }
-    return posts
-  }
-  const sortedPost = getSortedPosts();
+  const [filter, setFilter] = useState({
+    sort: '',
+    query: '',
+  })
 
   const createPost = (newPost) => {
     setPosts([...posts, newPost])
@@ -34,38 +27,26 @@ const App = () => {
     setPosts(posts.filter(p => p.id !== post.id))
   }
 
-  const sortPosts = (sort) => {
-    setSelectedSort(sort)
-  }
+  const sortedPost = useMemo(() => {
+    if (filter.sort) {
+      return [...posts].sort((a, b) =>
+        a[filter.sort].localeCompare(b[filter.sort]));
+    }
+    return posts
+  }, [filter.sort, posts])
+
+  const sortedAndSearchedPosts = useMemo(() => {
+    return sortedPost.filter(post => post.title.toLowerCase().includes(filter.query))
+  }, [filter.query, sortedPost])
+
+
   return (
 
     <div className="App">
       <CreateForm createPost={createPost} />
+      <PostFilter filter={filter} setFilter={setFilter} />
+      <Posts removePost={removePost} posts={sortedAndSearchedPosts} title='Posts List JavaScript:' />
 
-      <hr style={{ margin: '15px 0' }} />
-
-      <MyInput
-        placeholder='Search...'
-        value={searchQuery}
-        onChange={e => setSearchQuery(e.target.value)}
-      />
-
-      <SortSelect
-        onChange={sortPosts}
-        value={selectedSort}
-        defaultValue='Sort by'
-        disabled
-        options={[
-          { value: 'title', name: 'Title' },
-          { value: 'body', name: 'Description' }
-        ]} />
-
-
-      {
-        posts.length
-          ? <Posts removePost={removePost} posts={sortedPost} title='Posts List JavaScript:' />
-          : <NotFound />
-      }
 
     </div>
 
