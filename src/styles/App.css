@@ -94,7 +94,7 @@ hr {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	margin-top: 40px;
+
 	
 }
 .post__content h2 {
@@ -104,4 +104,18 @@ hr {
 .post__content p {
 	padding: 10px;
 	text-align: center;
+}
+
+.login {
+	margin-top: 100px;
+}
+.login-form {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	
+}
+h1 {
+	margin-bottom: 30px;
 }

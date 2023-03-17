@@ -24,3 +24,6 @@
 	text-decoration: none;
 	font-size: 18px;
 }
+.navbar__link button {
+	cursor: pointer;
+}
