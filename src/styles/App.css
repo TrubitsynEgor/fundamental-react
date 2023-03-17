@@ -21,6 +21,7 @@ hr {
 	
 }
 .App {
+	padding: 0 20px;
 }
 
 .post {
@@ -54,4 +55,24 @@ hr {
 .post-exit-active {
   transform: translateX(-365px);
   transition: all 500ms ease-in;
+}
+
+.pagination{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 5px;
+	padding: 15px 0;
+}
+.pagination__btn {
+	padding: 4px 10px;
+	border: none;
+	background-color: aqua;
+	color: teal;
+	cursor: pointer;
+}
+.pagination__btn.current {
+	color: black;
+	background-color: tomato;
+	font-weight: 600;
 }
